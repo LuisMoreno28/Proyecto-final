@@ -1,0 +1,165 @@
+<div class="relative w-full max-w-6xl mx-auto"> 
+  <!-- Contenedor principal: posición relativa para poder ubicar botones absolutos dentro. 
+       Centra el contenido horizontalmente y limita el ancho máximo del carrusel. -->
+
+  <!-- {{title}} -->
+  <!-- Comentado: Podría mostrar el título del carrusel si se desea. -->
+
+  <app-carousel 
+    [images]="images"  
+    [autoPlay]="autoPlay"
+    [interval]="3000"
+    [showIndicators]="indicators"
+    [showControls]="indicators"
+  >
+  </app-carousel>
+  <!-- Componente hijo del carrusel:
+       - [autoPlay]: activa o desactiva la reproducción automática de slides.
+       - [interval]: intervalo de cambio automático en milisegundos (3 segundos).
+       - [showIndicators] y [showControls]: muestran los botones o indicadores si 'indicators' es true.
+  -->
+
+  <!-- BOTÓN PARA MOSTRAR/OCULTAR INDICADORES -->
+  <button
+    class="absolute bottom-6 right-12 z-20 bg-white/90 hover:bg-white text-gray-700 hover:text-gray-900 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+    (click)="indicators = !indicators"
+  >
+    <!-- Botón posicionado en la esquina inferior derecha del carrusel.
+         Alterna el valor de 'indicators' (true/false) al hacer clic. -->
+
+    @if (indicators) { <!-- Si 'indicators' es true, muestra el ícono de “ocultar” -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="h-4 w-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+        />
+      </svg>
+      <!-- Ícono de "ojo tachado": representa ocultar indicadores -->
+    } @else { <!-- Si 'indicators' es false, muestra el ícono de “mostrar” -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+        />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+        />
+      </svg>
+      <!-- Ícono de "ojo abierto": representa mostrar indicadores -->
+    }
+  </button>
+
+  <!-- BOTÓN PARA ACTIVAR/DESACTIVAR AUTO PLAY -->
+  <button
+    class="absolute bottom-6 right-0 z-20 bg-white/90 hover:bg-white text-gray-700 hover:text-gray-900 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+    (click)="autoPlay = !autoPlay"
+  >
+    <!-- Este botón alterna la propiedad 'autoPlay' (reproducción automática del carrusel) -->
+
+    @if (autoPlay) { <!-- Si está activado, muestra ícono de “pausa” -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor" 
+        class="h-4 w-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 5.25v13.5m-7.5-13.5v13.5"
+        />
+      </svg>
+      <!-- Icono de pausa: || -->
+    } @else { <!-- Si está desactivado, muestra ícono de “play” -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="h-4 w-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+        />
+      </svg>
+      <!-- Icono de “play”: triángulo apuntando a la derecha -->
+    }
+  </button>
+</div>
+
+
+<div class="w-full flex flex-col items-center mt-16 px-4">
+
+  <!-- Título -->
+  <h1 class="text-3xl font-extrabold tracking-wide text-yellow-400 drop-shadow-md 
+             mb-10 text-center uppercase">
+    Proximamente disfruta las primeras apariciones de otros personajes
+  </h1>
+
+  <div class="w-full flex justify-center items-start gap-12">
+
+    <!-- Imagen izquierda -->
+    <div class="flex flex-col items-center">
+      <img src="images/redsonja1.webp"
+           alt="red sonja 1"
+           class="w-56 h-auto rounded-xl shadow-[0_8px_15px_rgba(255,0,0,0.35)] border-4 border-red-600" />
+
+      <span class="mt-3 text-red-500 font-semibold tracking-wide uppercase">
+        Red Sonja – #1
+      </span>
+    </div>
+
+    <!-- Textos al centro -->
+    <div class="max-w-md flex flex-col gap-8 bg-zinc-900 p-6 rounded-xl shadow-lg border border-zinc-700">
+
+      <p class="text-gray-200 leading-relaxed">
+        La primera aparición de <span class="text-red-400 font-semibold">Red Sonja</span> fue en 1973, en el número 23 de
+        <span class="font-semibold">Conan el Bárbaro</span>, publicado por Marvel Comics. Fue creada por Roy
+        Thomas y Barry Windsor-Smith.
+      </p>
+
+      <div class="border-t border-zinc-700"></div>
+
+      <p class="text-gray-200 leading-relaxed">
+        La primera aparición de <span class="text-red-300 font-semibold">Vampirella</span> fue en la revista de cómics
+        “Vampirella” #1 de Warren Publishing, publicada en septiembre de 1969. A partir del número 8 se convirtió en el
+        personaje principal.
+      </p>
+    </div>
+
+    <!-- Imagen derecha -->
+    <div class="flex flex-col items-center">
+      <img src="images/vampirella1.jpg"
+           alt="vampirella 1"
+           class="w-56 h-auto rounded-xl shadow-[0_8px_15px_rgba(255,0,0,0.35)] border-4 border-red-600" />
+
+      <span class="mt-3 text-red-500 font-semibold tracking-wide uppercase">
+        Vampirella – #1
+      </span>
+    </div>
+
+  </div>
+</div>

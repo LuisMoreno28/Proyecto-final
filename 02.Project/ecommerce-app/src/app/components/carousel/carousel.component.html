@@ -1,0 +1,64 @@
+<!-- Banner comic con Tailwind -->
+<div class="w-full bg-purple-700 text-yellow-300 font-bold text-3xl text-center py-4 mb-4 border-4 border-black rounded-xl shadow-[6px_6px_0_#000] font-bangers">
+  ¡Por tiempo limitado tus comics favoritos a un súper precio!
+</div>
+
+<div
+  class="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 mb-8 border-4 border-black"
+>
+  <!-- Contenedor principal -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+
+    @for(image of images; track $index){
+    <div 
+      class="absolute inset-0 transition-opacity duration-500 ease-in-out"
+      [class.opacity-100]="$index === currentIndex" 
+      [class.opacity-0]="$index !== currentIndex"
+    >
+
+      @if (image.loading) {
+      <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+        <div
+          class="animate-spin rounded-full h-12 w-12 border-b-4 border-yellow-400"
+        ></div>
+      </div>
+      }
+
+      @if (image.loaded) {
+      <img
+        [src]="image.src"
+        [alt]="image.alt"
+        class="w-full h-full object-contain"
+      />
+      }
+
+      @if(!image.loaded && !image.loading){
+      <div class="w-full h-full bg-gray-200 flex items-center justify-center"></div>
+      }
+
+    </div>
+    }
+
+    @if (showControls) {
+    <!-- Flecha Izquierda -->
+    <button
+      (click)="prevImage()"
+      class="absolute top-1/2 left-4 -translate-y-1/2 bg-yellow-300 hover:bg-yellow-400 text-black border-2 border-black rounded-full shadow-[4px_4px_0_#000] transition-transform duration-200 hover:scale-110 p-3"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <!-- Flecha Derecha -->
+    <button
+      (click)="nextImage()"
+      class="absolute top-1/2 right-4 -translate-y-1/2 bg-yellow-300 hover:bg-yellow-400 text-black border-2 border-black rounded-full shadow-[4px_4px_0_#000] transition-transform duration-200 hover:scale-110 p-3"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    }
+  </div>
+</div>

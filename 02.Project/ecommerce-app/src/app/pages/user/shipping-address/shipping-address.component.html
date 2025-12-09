@@ -1,0 +1,67 @@
+<div class="p-6">
+
+  <h1 class="text-2xl font-bold mb-4">Mis Direcciones de Envío</h1>
+
+  <!-- Botón para agregar -->
+  <button 
+    class="mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    (click)="createNewAddress()">
+    Agregar Dirección
+  </button>
+
+  <!-- LISTADO -->
+  <div class="space-y-3">
+    <div 
+      *ngFor="let address of addresses"
+      class="p-4 border rounded flex justify-between items-center bg-white shadow-sm">
+
+      <div>
+        <!-- Nombre (antes fullName) -->
+        <p class="font-medium">{{ address.name }}</p>
+
+        <!-- Dirección completa (antes street + houseNumber) -->
+        <p class="text-sm text-gray-700">{{ address.address }}</p>
+
+        <!-- Ciudad, Estado y Código postal -->
+        <p class="text-sm text-gray-700">
+          {{ address.city }}, {{ address.state }} {{ address.postalCode }}
+        </p>
+
+        <p class="text-sm text-gray-500">{{ address.phone }}</p>
+
+        <span 
+          *ngIf="address.isDefault"
+          class="inline-block mt-2 text-xs bg-green-200 text-green-800 px-2 py-1 rounded">
+          Dirección principal
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <button
+          class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+          (click)="editAddress(address)">
+          Editar
+        </button>
+
+        <!-- Botón para marcar como default -->
+<button
+  *ngIf="!address.isDefault"
+  class="bg-gray-200 text-black px-3 py-1 rounded hover:bg-gray-300"
+  (click)="setAsDefault(address._id)">
+  Marcar como principal
+</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div *ngIf="showForm" class="mt-6">
+    <app-shipping-address-form
+      [address]="selectedAddress"
+      [isEditMode]="isEditMode"
+      (addressSaved)="handleFormSubmit($event)">
+    </app-shipping-address-form>
+  </div>
+
+</div>
