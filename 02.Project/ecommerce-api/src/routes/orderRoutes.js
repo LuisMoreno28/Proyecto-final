@@ -19,13 +19,13 @@ const router = express.Router();
 router.get('/orders', authMiddleware, isAdmin, getOrders);
 
 // Obtener órdenes por usuario
-router.get('/orders/user/:userId', authMiddleware, getOrdersByUser);
+router.get('orders/user/:userId', authMiddleware, getOrdersByUser);
 
 // Obtener orden por ID
 router.get('/orders/:id', authMiddleware, getOrderById);
 
 // Crear nueva orden
-router.post('/orders', authMiddleware, createOrder);
+router.post('/', authMiddleware, createOrder);
 
 // Cancelar orden (función especial)
 router.patch('/orders/:id/cancel', authMiddleware, isAdmin, cancelOrder);

@@ -17,6 +17,11 @@ export const routes: Routes = [
     title: 'products',
   },
   {
+  path: 'thank-you',
+  loadComponent: () => import('../app/pages/thank-you/thank-you/thank-you.component').then(m => m.ThankYouComponent)
+},
+
+  {
     path:'product-view/:id', 
     loadComponent: () => import('../app/pages/product-detail/product-detail.component').then(
       (c)=> c.ProductDetailComponent

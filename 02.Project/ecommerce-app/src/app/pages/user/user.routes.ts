@@ -18,6 +18,18 @@ export const USER_ROUTES: Routes =[
         title:'Carrito' 
     },
     {
+        path:'checkout',
+        loadComponent: ()=> import('./check-out/check-out/check-out.component').then(c=>c.CheckOutComponent),
+        title: 'Checkout',
+    },
+    {
+    path: 'orders',
+    loadComponent: () =>
+        import('./orders/orders.component').then(c => c.OrdersComponent),
+    title: 'Órdenes'
+},
+
+    {
         path:'profile', 
         loadComponent: ()=>import('./profile/profile.component').then(c=>c.ProfileComponent),
         title: 'Mi perfil',
@@ -35,6 +47,8 @@ export const USER_ROUTES: Routes =[
         path: '',
         redirectTo: 'profile',
         pathMatch: 'full',
-    }
-    
+    },
+
 ]
+    
+    

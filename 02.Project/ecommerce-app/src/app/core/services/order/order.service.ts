@@ -43,7 +43,7 @@ export class OrderService {
   }
 
   getOrdersByUserId(userId: string): Observable<Order[]> {
-    return this.http.get(`${this.baseUrl}/${userId}`).pipe(
+    return this.http.get(`${this.baseUrl}/user/${userId}`).pipe(
       map((data) => {
         console.log(data);
         const response = orderArraySchema.safeParse(data);
@@ -61,6 +61,7 @@ export class OrderService {
       })
     );
   }
+  
 
   createOrder(order: Order): Observable<Order[]> {
     return this.http.post(`${this.baseUrl}`, order).pipe(
