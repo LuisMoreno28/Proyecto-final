@@ -14,7 +14,7 @@ setupGlobalErrorHandlers();
 
 const allowedOrigins = [ 
   'http://localhost:4200',
-  'https://proyectofinal-1-tm89.onrender.com', //Agregando dominios
+  'https://proyecto-final-1-j4yd.onrender.com', //Agregando dominios
 ];
 
 const app = express();
